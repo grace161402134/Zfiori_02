@@ -1,0 +1,133 @@
+@Metadata.layer: #CORE
+//@UI.headerInfo.title.type: #STANDARD
+//@UI.headerInfo.title.value: 'TravelId'
+//@UI.headerInfo.description.type: #STANDARD
+//@UI.headerInfo.description.value: 'TravelId'
+
+@UI: {
+    headerInfo: {
+        typeName: 'Travel',
+        typeNamePlural: 'Travels',
+        imageUrl: 'Attachment', //case-sensitive
+        description: { type: #STANDARD, value: 'TravelID' } //case-sensitive
+    }
+}
+annotate view ZC_RAP_ATRAV_GRC02 with
+{
+  @UI.facet: [ {
+    label: 'Travel',
+    id: 'idIdentification',
+    position: 10 ,
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+
+  @UI: {
+    lineItem: [ { position: 10, importance: #HIGH } ],
+    identification: [ { position: 10 } ],
+    selectionField: [ { position: 10 } ]
+  }
+  TravelId;
+
+  @UI: {
+        lineItem: [ { position: 20, importance: #HIGH } ],
+        identification: [ { position: 20 } ],
+        selectionField: [ { position: 20 } ]
+  }
+  AgencyId;
+
+  @UI: {
+      lineItem: [ { position: 30, importance: #HIGH } ],
+      identification: [ { position: 30 } ],
+      selectionField: [ { position: 30 } ]
+  }
+  CustomerId;
+
+  @UI: {
+        lineItem: [ { position: 40, importance: #MEDIUM  } ],
+        identification: [ { position: 40 } ]
+
+  }
+  BeginDate;
+
+  @UI: {
+       lineItem: [ { position: 50, importance: #MEDIUM  } ],
+       identification: [ { position: 50 } ]
+
+  }
+  EndDate;
+
+  @UI.identification: [ { position: 60 } ]
+  BookingFee;
+
+  @UI.identification: [ { position: 70 } ]
+  TotalPrice;
+
+  @UI.identification: [ { position: 90 } ]
+  Description;
+
+  @UI: {
+         lineItem:       [ { position: 100, importance: #HIGH } ],
+         identification: [ { position: 100 } ],
+         textArrangement: #TEXT_ONLY
+   }
+  OverallStatus;
+
+  @UI.identification: [ { position: 110,
+                        label: 'Attachment' } ]
+  @UI.lineItem: [{ position:110,
+                   label: 'Attachment' }]
+  Attachment;
+
+  @UI.hidden: true
+  MimeType;
+
+  @UI.hidden: true
+  FileName;
+
+  //  @UI.identification: [ {
+  //    position: 130
+  //  } ]
+  //  @UI.lineItem: [ {
+  //    position: 130
+  //  } ]
+  //  @UI.selectionField: [ {
+  //    position: 130
+  //  } ]
+  //  CreatedBy;
+  //
+  //  @UI.identification: [ {
+  //    position: 140
+  //  } ]
+  //  @UI.lineItem: [ {
+  //    position: 140
+  //  } ]
+  //  @UI.selectionField: [ {
+  //    position: 140
+  //  } ]
+  //  CreatedAt;
+  //
+  //  @UI.identification: [ {
+  //    position: 150
+  //  } ]
+  //  @UI.lineItem: [ {
+  //    position: 150
+  //  } ]
+  //  @UI.selectionField: [ {
+  //    position: 150
+  //  } ]
+  //  LocalLastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  //  @UI.identification: [ {
+  //    position: 170
+  //  } ]
+  //  @UI.lineItem: [ {
+  //    position: 170
+  //  } ]
+  //  @UI.selectionField: [ {
+  //    position: 170
+  //  } ]
+  //  LastChangedAt;
+}

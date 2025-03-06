@@ -1,0 +1,85 @@
+managed implementation in class ZBP_R_RAP_ATRAV_GRC02 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_RAP_ATRAV_GRC02 alias Travel
+persistent table zrap_atrav_grc02
+draft table zrp_atrv_grc02_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+early numbering
+
+{
+  //  field ( mandatory : create )
+  //   TravelId;
+
+  field ( readonly )
+  CreatedBy,
+  CreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( readonly )
+  TravelId;
+
+
+  //sistem akan memastikan data yang masuk selalu lengkap dan valid.
+  field ( mandatory )
+  CustomerID,
+  BeginDate,
+  EndDate;
+
+
+  create;
+  update;
+  delete;
+
+
+  //Saat data perjalanan baru dibuat, sistem otomatis menjalankan setStatusToOpen untuk menentukan statusnya.
+  determination setStatusToOpen on modify { create; }
+
+
+  //validasi ini, sistem akan otomatis menolak data yang tidak sesuai aturan.
+  //tanpa ini,sistem bisa menerima data yang salah,
+  //misalnya Customer ID yang tidak ada atau tanggal yang tidak masuk akal.
+  validation validateCustomer on save { create; field CustomerID; } //Mengecek apakah Customer ID yang dimasukkan valid.
+  validation validateDates on save { create; field BeginDate, EndDate; } //Mengecek apakah Begin Date ada dan End Date lebih besar dari Begin Date.
+
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+
+  //sistem memastikan bahwa draft sudah valid sebelum disimpan secara permanen.
+  draft determine action Prepare
+  {
+    validation validateCustomer; //dijalankan saat pembuatan data (create) dan dipicu oleh CustomerID.
+    validation validateDates; //dijalankan saat pembuatan data (create) dan dipicu oleh BeginDate & EndDate.
+
+  }
+
+  mapping for zrap_atrav_grc02
+    {
+      TravelId           = travel_id;
+      AgencyId           = agency_id;
+      CustomerId         = customer_id;
+      BeginDate          = begin_date;
+      EndDate            = end_date;
+      BookingFee         = booking_fee;
+      TotalPrice         = total_price;
+      CurrencyCode       = currency_code;
+      Description        = description;
+      OverallStatus      = overall_status;
+      Attachment         = attachment;
+      MimeType           = mime_type;
+      FileName           = file_name;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}
