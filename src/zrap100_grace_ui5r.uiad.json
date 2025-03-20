@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "fiori",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD"
+  },
+  "ui5AppDetails": {
+    "appId": "zrap100grace"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_B9DDBE93FFE7AECFD7E5AF9C26AA3E9780707020_TM",
+    "semanticObject": "fiori",
+    "action": "fiori",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_B9DDBE93FFE7AECFD7E5AF9C26AA3E9780707020_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "fiori",
+        "subtitle": "fiori"
+      }
+    }
+  ]
+}
